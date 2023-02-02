@@ -33,7 +33,7 @@ const webhook = async () => {
             return new Response("Couldn't succeed with installing webhook");
           }
         default:
-          return Response.redirect("https://t.me/yuxiobot", 302);
+          return Response.redirect("https://t.me/snippets_bot", 302);
       }
     });
   };
