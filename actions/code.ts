@@ -8,7 +8,7 @@ bot.command('code', ctx => {
 
     const result = run(code);
 
-    const output = "<b>Code:</b>\n" + `<code>` + code.trim() + `</code>` + "\n\n\n<b>Result</b>: \n" + result;
+    const output = "<b>Code:</b>\n" + `<code>` + code.trim() + `</code>` + "\n\n\<b>Result</b>: \n" + result;
 
     bot.api.sendMessage(ctx.message.chat.id, output, { parse_mode: "HTML" });
 })
