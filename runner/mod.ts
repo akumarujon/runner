@@ -1,4 +1,4 @@
-const run = async(code) => {
+const run = (code) => {
     let output = "";
 
     console.log = (...args) => output += ...args.toString() + "\n";
