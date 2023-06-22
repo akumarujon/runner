@@ -1,7 +1,7 @@
 # Coder Runner
 🤖 | Telegram Bot to run JavaScript codes without leaving Telegram.
 
-This bot uses [botland](https://github.com/akumaru69/botland) template.
+This bot uses [botland](https://github.com/triistam/botland) template.
 
 ## Usage
 
