@@ -1,14 +1,14 @@
-import { bot } from "../config/index.ts"
-import { run } from "../runner/mod.ts"
+import { bot } from "../config/index.ts";
+import { run } from "../runner/mod.ts";
 
-bot.command('code', ctx => {
-    const text = ctx.message.text
+bot.command("code", async (ctx) => {
+  const text = ctx.update.message?.text;
 
-    const code = text.split("/code")[1];
+  const code = await text?.split("/code")[1];
 
-    const result = run(code);
+  const result = await run(code as string);
 
-    const output = "<b>Code:</b>\n" + `<code>` + code.trim() + `</code>` + "\n\n\<b>Result</b>: \n" + result;
-
-    bot.api.sendMessage(ctx.message.chat.id, output, { parse_mode: "HTML" });
-})
+  await bot.api.sendMessage(ctx.update.message?.chat.id as number, result, {
+    parse_mode: "HTML",
+  });
+});
