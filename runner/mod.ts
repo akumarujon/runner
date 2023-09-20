@@ -1,17 +1,17 @@
 import axiod from "https://deno.land/x/axiod@0.26.2/mod.ts";
 
-const run = async (code: string) => {
+const run = async (code: string, language: string) => {
   const res = await axiod.get("https://emkc.org/api/v2/piston/runtimes");
 
-  const language = res.data.find((lang) => lang.runtime == "node");
+  const langs = res.data.find((lang) => lang.language == language);
 
+  if (langs != undefined){
   const data = {
-    "language": "javascript",
-    "version": language.version,
-    "runtime": "node-js",
+    "language": language,
+    "version": langs.version,
     "files": [
       {
-        "name": "index.js",
+        "name": `file.${langs.aliases.length == 0 ? "xz" : langs.aliases[0]}`, // я тут реально хз
         "content": code,
       },
     ],
@@ -23,12 +23,15 @@ const run = async (code: string) => {
     return `
 Language: <b>${r.data.language}</b>
 Version: <b>${r.data.version}</b>
-Input: \n<code> ${r.config.data?.files[0].content.trim()} </code>
+Code: \n<code> ${r.config.data?.files[0].content.trim()} </code>
 Output:\n <code>${r.data.run.output.trim()}</code>
     `;
   } else {
     return `Status: ${r.status}
 Status Text: ${r.statusText}`;
+  }
+  }else{
+    return `Error: language is not found.`
   }
 };
 
