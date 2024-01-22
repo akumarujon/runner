@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "fmt": "deno fmt --watch",
+    "lint": "deno lint --watch",
+    "run": "deno run -A --watch core.ts",
+    "dev": "deno task fmt & deno task lint & deno task run"
+  }
+}
